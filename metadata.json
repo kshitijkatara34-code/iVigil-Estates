@@ -1,0 +1,5 @@
+{
+  "name": "PropMatch AI CRM",
+  "description": "An AI-powered CRM dashboard that automatically matches tenants and landlords based on their requirements using Gemini AI.",
+  "requestFramePermissions": []
+}
