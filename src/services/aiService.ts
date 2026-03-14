@@ -17,6 +17,7 @@ export async function matchTenantWithLandlords(tenant: Tenant, landlords: Landlo
     - Furnishing: ${tenant.furnishingStatus}
     - Floor Preference: ${tenant.floorPreference}
     - Client Type: ${tenant.clientType} (${tenant.numberOfMembers} members)
+    - Priorities (1-5 scale): ${tenant.priorities ? `Budget: ${tenant.priorities.budget}, Location: ${tenant.priorities.location}, BHK: ${tenant.priorities.bhk}, Furnishing: ${tenant.priorities.furnishing}` : 'Not specified'}
     
     Available Properties:
     ${landlords.map(l => `
@@ -29,7 +30,7 @@ export async function matchTenantWithLandlords(tenant: Tenant, landlords: Landlo
       - Description: ${l.propertyDescription}
     `).join('\n')}
     
-    Analyze the tenant's requirements against each property. Provide a match score from 0 to 100 for each property, and a brief reasoning (max 2 sentences) for why it is a good or bad match.
+    Analyze the tenant's requirements against each property. Provide a match score from 0 to 100 for each property, and a detailed reasoning (3-4 sentences) for why it is a good or bad match, explicitly highlighting specific property features that align well with the tenant's priorities and potential areas of concern for the tenant.
     Also provide a list of specific 'alignments' (requirements that match perfectly) and 'contradictions' (requirements that do not match).
     Consider budget, location, configuration, and furnishing status as the most important factors.
     IMPORTANT RULE: Only properties with 2 or fewer contradictions will be shown to the user. 
@@ -133,7 +134,7 @@ export async function matchLandlordWithTenants(landlord: Landlord, tenants: Tena
       - Client Type: ${t.clientType} (${t.numberOfMembers} members)
     `).join('\n')}
     
-    Analyze the property's features against each tenant's requirements. Provide a match score from 0 to 100 for each tenant, and a brief reasoning (max 2 sentences) for why it is a good or bad match.
+    Analyze the property's features against each tenant's requirements. Provide a match score from 0 to 100 for each tenant, and a detailed reasoning (3-4 sentences) for why it is a good or bad match, explicitly highlighting specific property features that align well with the tenant's priorities and potential areas of concern for the tenant.
     Also provide a list of specific 'alignments' (requirements that match perfectly) and 'contradictions' (requirements that do not match).
     Consider budget, location, configuration, and furnishing status as the most important factors.
     IMPORTANT RULE: Only matches with 2 or fewer contradictions will be shown to the user. 
@@ -226,6 +227,7 @@ export async function matchTenantWithInventory(tenant: Tenant, inventory: Invent
     - Furnishing: ${tenant.furnishingStatus}
     - Floor Preference: ${tenant.floorPreference}
     - Client Type: ${tenant.clientType} (${tenant.numberOfMembers} members)
+    - Priorities (1-5 scale): ${tenant.priorities ? `Budget: ${tenant.priorities.budget}, Location: ${tenant.priorities.location}, BHK: ${tenant.priorities.bhk}, Furnishing: ${tenant.priorities.furnishing}` : 'Not specified'}
     
     Inventory Properties:
     ${inventory.map(item => `
@@ -239,7 +241,7 @@ export async function matchTenantWithInventory(tenant: Tenant, inventory: Invent
       - Area: ${item.propertyArea}
     `).join('\n')}
     
-    Analyze the tenant's requirements against each property. Provide a match score from 0 to 100 for each property, and a brief reasoning (max 2 sentences) for why it is a good or bad match.
+    Analyze the tenant's requirements against each property. Provide a match score from 0 to 100 for each property, and a detailed reasoning (3-4 sentences) for why it is a good or bad match, explicitly highlighting specific property features that align well with the tenant's priorities and potential areas of concern for the tenant.
     Also provide a list of specific 'alignments' (requirements that match perfectly) and 'contradictions' (requirements that do not match).
     Consider budget, location, configuration, and furnishing status as the most important factors.
     IMPORTANT RULE: Only properties with 2 or fewer contradictions will be shown to the user. 

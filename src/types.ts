@@ -16,6 +16,12 @@ export interface Tenant {
   floorPreference: string;
   hometown: string;
   emailAddress: string;
+  priorities?: {
+    budget: number;
+    location: number;
+    bhk: number;
+    furnishing: number;
+  };
 }
 
 export interface Landlord {
